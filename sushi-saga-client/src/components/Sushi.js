@@ -1,20 +1,32 @@
 import React, { Fragment } from 'react'
+import SushiContainer from "../containers/SushiContainer"
+import App from "../App"
 
 const Sushi = (props) => {
+
+  const eatSushi = () => {
+    
+    props.sendSushi(props.sushi)
+    
+  }
+
+ 
+
+  
   return (
     <div className="sushi">
       <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
+           onClick={eatSushi}>
         { 
-          /* Tell me if this sushi has been eaten! */ 
-          true ?
+          props.eaten.includes(props.sushi.id)
+           ?
             null
           :
-            <img src={/* Give me an image source! */} width="100%" />
+          <img src={`${props.sushi.img_url}`} width="100%" />
         }
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {props.sushi.name} - ${props.sushi.price}
       </h4>
     </div>
   )
